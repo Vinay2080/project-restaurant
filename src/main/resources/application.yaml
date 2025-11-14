@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: project-restaurant
+  datasource:
+    url: jdbc:postgresql://${db_url}:${db_port}/${db_name}
+    username: ${db_username}
+    password: ${db_password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql:
+        jdbc:
+          time_zone: ${db_timezone}
+    database: postgresql
+    show-sql: true
