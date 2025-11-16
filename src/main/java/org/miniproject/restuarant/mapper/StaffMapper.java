@@ -22,6 +22,11 @@ public interface StaffMapper {
     @Mapping(target = "isActive", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(source = "employeeID", target = "employeeID")
+    @Mapping(source = "position", target = "position")
+    @Mapping(source = "hireDate", target = "hireDate")
+    @Mapping(source = "employmentType", target = "employmentType")
+    @Mapping(source = "hourlyRate", target = "hourlyRate")
+    @Mapping(source = "monthlySalary", target = "monthlySalary")
     Staff toEntity(CreateStaffRequest request);
 
 
