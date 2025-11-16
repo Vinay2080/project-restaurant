@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class SecurityConfig {
 
-    // todo add path from authentication
+
     public static final String[] public_urls = {
             "/api/v1/auth/**",
             "/v2/api-docs",

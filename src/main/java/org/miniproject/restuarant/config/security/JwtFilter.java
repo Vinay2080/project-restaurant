@@ -30,7 +30,6 @@ public class JwtFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        // todo enter a valid path
         if (request.getServletPath().contains("api/v1/auth")) {
             filterChain.doFilter(request, response);
             return;
