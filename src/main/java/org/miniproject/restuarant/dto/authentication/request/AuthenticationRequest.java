@@ -18,9 +18,9 @@ import lombok.*;
 public class AuthenticationRequest {
     @NotBlank(message = "VALIDATION.AUTHENTICATION.EMAIL.NOT_BLANK")
     @Email(message = "VALIDATION.AUTHENTICATION.EMAIL.FORMAT")
-    @Schema(example = "user001@mail.com")
+    @Schema(example = "admin@restaurant.com")
     private String email;
     @NotBlank(message = "VALIDATION.AUTHENTICATION.PASSWORD.NOT_BLANK")
-    @Schema(example = "pAssword1!_")
+    @Schema(example = "Admin_123!")
     private String password;
 }

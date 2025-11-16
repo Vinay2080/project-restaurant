@@ -60,5 +60,5 @@ public class CreateManagerRequest implements Serializable {
     @NotNull(message = "Date of birth is required")
     @Past(message = "Date of birth must be in the past")
     @Schema(example = "2003-03-03")
-   private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
 }

@@ -1,4 +1,4 @@
-package org.miniproject.restuarant.config;
+package org.miniproject.restuarant.config.openAPI;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;

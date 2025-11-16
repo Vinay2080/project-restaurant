@@ -85,7 +85,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public void deleteAccount(String userID) {
-        AppUser appUser = appUserRepository.findById(userID).orElseThrow(()-> new BusinessException(ErrorCode.USER_NOT_FOUND));
+        AppUser appUser = appUserRepository.findById(userID).orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
         appUserRepository.delete(appUser);
     }
 

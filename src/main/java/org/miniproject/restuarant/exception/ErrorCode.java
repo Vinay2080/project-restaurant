@@ -25,8 +25,12 @@ public enum ErrorCode {
     USERNAME_NOT_FOUND("USER_NOT_FOUND", "cannot find user with provided username %s", HttpStatus.NOT_FOUND),
     INTERNAL_EXCEPTION("INTERNAL_EXCEPTION", "an internal error occurred, please try again later or contact the admin", HttpStatus.INTERNAL_SERVER_ERROR),
     CATEGORY_ALREADY_EXISTS_FOR_USER("CATEGORY_ALREADY_EXISTS_FOR_USER", "A category with this name already exists for the user", HttpStatus.CONFLICT),
-    ROLE_NOT_FOUND("ROLE_NOT_FOUND", "role with role-name %s not found", HttpStatus.NOT_FOUND ), USER_ALREADY_DEACTIVATED("USER_ALREADY_DEACTIVATED","user %s is already deactivated" , HttpStatus.CONFLICT),
-    USER_ALREADY_ACTIVE("USER_ALREADY_ACTIVE","user %s is already activated" ,HttpStatus.CONFLICT );
+    ROLE_NOT_FOUND("ROLE_NOT_FOUND", "role with role-name %s not found", HttpStatus.NOT_FOUND), USER_ALREADY_DEACTIVATED("USER_ALREADY_DEACTIVATED", "user %s is already deactivated", HttpStatus.CONFLICT),
+    USER_ALREADY_ACTIVE("USER_ALREADY_ACTIVE", "user %s is already activated", HttpStatus.CONFLICT),
+    RESOURCE_NOT_FOUND("RESOURCE_NOT_FOUND", "Staff not found with ID: %s", HttpStatus.NOT_FOUND),
+    DUPLICATE_RESOURCE("DUPLICATE_RESOURCE", "Salary record already exists for the staff in the specified period", HttpStatus.CONFLICT),
+    VALIDATION_ERROR("VALIDATION_ERROR", "Start date must be before or equal to end date", HttpStatus.BAD_REQUEST),
+    INVALID_OPERATION("INVALID_OPERATION", "Salary is already marked as paid", HttpStatus.BAD_REQUEST), RESOURCE_ALREADY_EXISTS("RESOURCE_ALREADY_EXISTS", "Staff with employee ID %S already exists", HttpStatus.CONFLICT);
     private final String code;
     private final String defaultMessage;
     private final HttpStatus httpStatus;

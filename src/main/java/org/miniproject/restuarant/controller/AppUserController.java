@@ -8,7 +8,6 @@ import org.miniproject.restuarant.dto.appUser.request.ChangePasswordRequest;
 import org.miniproject.restuarant.dto.appUser.request.ProfileUpdateRequest;
 import org.miniproject.restuarant.model.AppUser;
 import org.miniproject.restuarant.service.AppUserService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

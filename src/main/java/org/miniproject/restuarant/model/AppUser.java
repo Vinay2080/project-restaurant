@@ -73,6 +73,21 @@ public class AppUser implements UserDetails {
     @LastModifiedDate
     @Column(name = "last_modified_date", insertable = false)
     private LocalDateTime lastModifiedDate;
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = {
+                    @JoinColumn(name = "users_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "roles_id")
+            }
+    )
+
+    private List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -106,21 +121,4 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
-
-    @ManyToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = {
-                    @JoinColumn(name = "users_id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "roles_id")
-            }
-    )
-
-    private List<Role> roles;
 }

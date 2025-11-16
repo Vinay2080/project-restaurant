@@ -14,7 +14,8 @@ public interface ManagerMapper {
     @Mapping(target = "lastModifiedDate", ignore = true)
     @Mapping(target = "createdDate", ignore = true)
 
-    @Mapping(target = "ID", ignore = true)    @Mapping(target = "emailVerified", constant = "false")
+    @Mapping(target = "ID", ignore = true)
+    @Mapping(target = "emailVerified", constant = "false")
     @Mapping(target = "phoneVerified", constant = "false")
     @Mapping(target = "enabled", constant = "true")
     @Mapping(target = "locked", constant = "false")
