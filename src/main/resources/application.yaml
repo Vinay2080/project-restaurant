@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql:
@@ -18,3 +18,10 @@ spring:
           time_zone: ${db_timezone}
     database: postgresql
     show-sql: true
+
+app:
+  security:
+    jwt:
+      expiration:
+        access-token: 900000 # 15 minutes
+        refresh-token: 604800000 # 7 days
