@@ -30,7 +30,12 @@ public class JwtFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        if (request.getServletPath().contains("api/v1/auth")) {
+        // Only skip JWT processing for public auth endpoints (login/register/refresh)
+        // Do NOT skip /api/v1/auth/me so that the JWT is processed and Authentication is set
+        final String path = request.getServletPath();
+        if ("/api/v1/auth/login".equals(path)
+                || "/api/v1/auth/register".equals(path)
+                || "/api/v1/auth/refresh/token".equals(path)) {
             filterChain.doFilter(request, response);
             return;
         }

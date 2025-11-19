@@ -7,13 +7,17 @@ import org.miniproject.restuarant.dto.authentication.request.AuthenticationReque
 import org.miniproject.restuarant.dto.authentication.request.RefreshTokenRequest;
 import org.miniproject.restuarant.dto.authentication.request.RegistrationRequest;
 import org.miniproject.restuarant.dto.authentication.response.AuthenticationResponse;
+import org.miniproject.restuarant.dto.authentication.response.CurrentUserResponse;
+import org.miniproject.restuarant.model.AppUser;
 import org.miniproject.restuarant.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,6 +53,19 @@ public class AuthenticationController {
             RefreshTokenRequest request
     ) {
         return ResponseEntity.ok(authenticationService.refreshToken(request));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<CurrentUserResponse> me(Authentication authentication) {
+        final AppUser user = (AppUser) authentication.getPrincipal();
+        final List<String> roles = user.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(CurrentUserResponse.builder()
+                .email(user.getEmail())
+                .roles(roles)
+                .build());
     }
 
 }

@@ -86,10 +86,8 @@ public class AppUser implements UserDetails {
                     @JoinColumn(name = "roles_id")
             }
     )
-    private List<Role> roles;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Staff staff;
+    private List<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -30,7 +30,8 @@ public enum ErrorCode {
     RESOURCE_NOT_FOUND("RESOURCE_NOT_FOUND", "Staff not found with ID: %s", HttpStatus.NOT_FOUND),
     DUPLICATE_RESOURCE("DUPLICATE_RESOURCE", "Salary record already exists for the staff in the specified period", HttpStatus.CONFLICT),
     VALIDATION_ERROR("VALIDATION_ERROR", "Start date must be before or equal to end date", HttpStatus.BAD_REQUEST),
-    INVALID_OPERATION("INVALID_OPERATION", "Salary is already marked as paid", HttpStatus.BAD_REQUEST), RESOURCE_ALREADY_EXISTS("RESOURCE_ALREADY_EXISTS", "Staff with employee ID %S already exists", HttpStatus.CONFLICT);
+    INVALID_OPERATION("INVALID_OPERATION", "Salary is already marked as paid", HttpStatus.BAD_REQUEST), RESOURCE_ALREADY_EXISTS("RESOURCE_ALREADY_EXISTS", "Staff with employee ID %S already exists", HttpStatus.CONFLICT),
+    BAD_REQUEST("BAD_REQUEST", "table not available for given time slot",HttpStatus.BAD_REQUEST );
     private final String code;
     private final String defaultMessage;
     private final HttpStatus httpStatus;
