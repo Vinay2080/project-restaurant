@@ -56,21 +56,21 @@ public class JwtServices {
                 .compact();
     }
 
+    public String refreshAccessToken(final String refreshToken) {
+        final Claims claims = extractAllClaims(refreshToken);
 
-    protected String extractUsername(final String token) {
-        return extractAllClaims(token).getSubject();
+        if (!"refresh_token".equals(claims.get(TOKEN_TYPE, String.class))) {
+            throw new BusinessException(ErrorCode.INVALID_JWT_TOKEN_TYPE, claims.get(TOKEN_TYPE, String.class));
+        }
 
+        if (claims.getExpiration().before(new Date())) {
+            throw new BusinessException(ErrorCode.JWT_TOKEN_EXPIRED, claims.getExpiration().toString());
+        }
+
+        final String username = claims.getSubject();
+
+        return generateAccessToken(username);
     }
-
-    public boolean isTokenValid(String token, String usernameExpected) {
-        String username = extractUsername(token);
-        return username.matches(usernameExpected) && !isTokenExpired(token);
-    }
-
-    private boolean isTokenExpired(String token) {
-        return extractAllClaims(token).getExpiration().before(new Date());
-    }
-
 
     private Claims extractAllClaims(String token) {
         try {
@@ -86,20 +86,18 @@ public class JwtServices {
 
     }
 
-    public String refreshAccessToken(final String refreshToken) {
-        final Claims claims = extractAllClaims(refreshToken);
+    protected String extractUsername(final String token) {
+        return extractAllClaims(token).getSubject();
 
-        if (!"refresh_token".equals(claims.get(TOKEN_TYPE, String.class))) {
-            throw new BusinessException(ErrorCode.INVALID_JWT_TOKEN_TYPE, claims.get(TOKEN_TYPE, String.class));
-        }
+    }
 
-        if (claims.getExpiration().before(new Date())) {
-            throw new BusinessException(ErrorCode.JWT_TOKEN_EXPIRED, claims.getExpiration().toString());
-        }
+    public boolean isTokenValid(String token, String usernameExpected) {
+        String username = extractUsername(token);
+        return username.matches(usernameExpected) && !isTokenExpired(token);
+    }
 
-        final String username = claims.getSubject();
-
-        return generateAccessToken(username);
+    private boolean isTokenExpired(String token) {
+        return extractAllClaims(token).getExpiration().before(new Date());
     }
 
 }

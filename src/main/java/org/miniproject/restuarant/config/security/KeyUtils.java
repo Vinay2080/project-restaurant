@@ -14,11 +14,9 @@ import java.util.Base64;
 @Service
 public class KeyUtils {
 
-
     private KeyUtils() {
 
     }
-
 
     public static PrivateKey loadPrivateKey(final String pemPath) throws Exception {
         final String key = readKeyFromResources(pemPath)
