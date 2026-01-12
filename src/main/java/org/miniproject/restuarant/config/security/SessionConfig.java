@@ -10,7 +10,7 @@ public class SessionConfig {
 
     private static final String SESSION_COOKIE_NAME = "JSESSIONID";
     private static final String SESSION_COOKIE_PATH = "/";
-    // Use SameSite=None so cookies can be sent on cross-site requests (e.g., via ngrok).
+    // Use SameSite= None, so cookies can be sent on cross-site requests (e.g., via ngrok).
     // Requires Secure=true and HTTPS in the browser.
     private static final String SESSION_COOKIE_SAME_SITE = "None";
     private static final boolean SESSION_COOKIE_HTTP_ONLY = true;

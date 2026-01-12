@@ -101,7 +101,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
     }
 
-    private void checkPasswords(String password, String confirmPassword) {
+    private void    checkPasswords(String password, String confirmPassword) {
         if (!password.matches(confirmPassword)) {
             throw new BusinessException(ErrorCode.CONFIRM_PASSWORD_MISMATCH, confirmPassword);
         }
